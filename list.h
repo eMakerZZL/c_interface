@@ -18,7 +18,7 @@ extern T List_push(T list, void *x);
 extern T List_reverse(T list);
 extern int List_length(T list);
 extern void List_free(T *list);
-extern void List_map(T *list, void apply(void **x, void *c), void *cl);
+extern void List_map(T list, void apply(void **x, void *c), void *cl);
 extern void **List_toArray(T list, void *end);
 
 #undef T

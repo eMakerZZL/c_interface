@@ -108,12 +108,12 @@ void List_free(T* list)
     }
 }
 
-void List_map(T* list, void apply(void** x, void* c), void* cl)
+void List_map(T list, void apply(void** x, void* c), void* cl)
 {
     assert(apply);
 
-    for (; list; list = list->rest)
-        apply(&list->first, cl)
+	for (; list; list = list->rest)
+		apply(&list->first, cl);
 }
 
 void** List_toArray(T list, void* end)

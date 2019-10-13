@@ -3,16 +3,16 @@
 
 #define CREATE_QUEUE( QUEUE_TYPE, SUFFIX, QUEUE_SIZE)        \
                                                              \
-static QUEUE_TYPE queue##SUFFIX[QUEUE_SIZE + 1];             \
-static int front##SUFFIX = 0;                                \
+static QUEUE_TYPE queue##SUFFIX[QUEUE_SIZE];                 \
+static int front##SUFFIX = 1;                                \
 static int rear##SUFFIX = 0;                                 \
                                                              \
 int queue_is_empty##SUFFIX(void) {                           \
-    return front##SUFFIX == rear##SUFFIX;                    \
+    return (rear##SUFFIX + 1) % QUEUE_SIZE == front##SUFFIX; \
 }                                                            \
                                                              \
 int queue_is_full##SUFFIX(void) {                            \
-    return (rear##SUFFIX + 1) % QUEUE_SIZE == front##SUFFIX; \
+    return (rear##SUFFIX + 2) % QUEUE_SIZE == front##SUFFIX; \
 }                                                            \
                                                              \
 void enqueue##SUFFIX(QUEUE_TYPE val) {                       \
